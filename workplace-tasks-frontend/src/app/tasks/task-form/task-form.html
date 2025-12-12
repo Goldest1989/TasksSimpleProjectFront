@@ -1,0 +1,28 @@
+<div class="task-form-card">
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <h2>{{ isEdit ? 'Editar Task' : 'Nova Task' }}</h2>
+
+    <label for="title">Título</label>
+    <input id="title" type="text" formControlName="title" placeholder="Título da task" />
+
+    <label for="description">Descrição</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      placeholder="Detalhes da task"
+      rows="4"
+    ></textarea>
+
+   <label>Status</label>
+    <select formControlName="status" class="input">
+      <option *ngFor="let s of taskStatusOptions" [value]="s.value">{{ s.label }}</option>
+    </select>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="form.invalid" class="save-btn">
+        {{ isEdit ? 'Atualizar' : 'Criar' }}
+      </button>
+      <button type="button" (click)="cancel()" class="cancel-btn">Cancelar</button>
+    </div>
+  </form>
+</div>
