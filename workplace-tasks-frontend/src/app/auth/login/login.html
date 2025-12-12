@@ -1,0 +1,35 @@
+<div class="form">
+  <h2 id="task-label">Login</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <!-- Erro geral vindo do backend -->
+    <div *ngIf="loginError" class="error error-general">
+      {{ loginError }}
+    </div>
+
+    <input
+      type="email"
+      class="input"
+      placeholder="Email"
+      formControlName="email"
+    />
+    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+      Email inválido
+    </div>
+
+    <input
+      type="password"
+      class="input"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+      Password obrigatória
+    </div>
+
+    <button class="btn-primary" type="submit">Entrar</button>
+
+  </form>
+
+</div>
